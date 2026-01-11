@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRAINROT-NEWZZ</title>
+    <style>
+        :root {
+            --bg-dark: #050510;
+            --card-bg: rgba(20, 20, 35, 0.6);
+            --neon-pink: #ff00ff;
+            --neon-blue: #00ffff;
+            --neon-purple: #bd00ff;
+            --text-main: #ffffff;
+            --text-dim: #a0a0b0;
+            --accent-gradient: linear-gradient(90deg, #ff00ff, #00ffff);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(189, 0, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 40%);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER --- */
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(5, 5, 16, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            font-style: italic;
+        }
+
+        .logo-text span { color: var(--text-main); }
+        .logo-text span:last-child { color: #ff8c00; /* Orange for NEWZZ */ }
+
+        .date {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        /* --- NAV --- */
+        nav {
+            display: flex;
+            gap: 2rem;
+            padding: 1rem 2rem;
+            overflow-x: auto;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            scrollbar-width: none; /* Hide scrollbar Firefox */
+        }
+        nav::-webkit-scrollbar { display: none; }
+
+        .nav-item {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--neon-blue);
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+        }
+
+        /* --- SECTIONS --- */
+        .section-title {
+            font-size: 1.8rem;
+            padding: 1.5rem 2rem 0.5rem;
+            background: -webkit-linear-gradient(0deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(189, 0, 255, 0.3);
+        }
+
+        /* --- TRENDING (Horizontal Scroll) --- */
+        .trending-container {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1rem 2rem;
+            overflow-x: auto;
+            padding-bottom: 2rem;
+        }
+
+        .card-lg {
+            min-width: 320px;
+            height: 400px;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+        
+        /* Neon Border Effect */
+        .card-lg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 12px;
+            padding: 1.5px;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .card-lg:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(189, 0, 255, 0.4);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 60%;
+            background-color: #2a2a40;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-content {
+            padding: 1rem;
+            position: relative;
+            height: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .tag {
+            background: linear-gradient(90deg, #b000b0, #7000ff);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            width: fit-content;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-top: auto;
+        }
+
+        /* --- LATEST UPDATES (Grid) --- */
+        .latest-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem 2rem 4rem;
+        }
+
+        .card-sm {
+            background: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        /* Blue/Cyan Glow for small cards */
+        .card-sm:hover {
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+            border-color: var(--neon-blue);
+        }
+
+        .card-sm .card-image {
+            height: 180px;
+        }
+
+        .card-sm .card-content {
+            height: auto;
+            padding: 1rem;
+        }
+
+        .loading-trigger {
+            text-align: center;
+            padding: 2rem;
+            color: var(--neon-blue);
+            font-weight: bold;
+            opacity: 0;
+        }
+
+        /* --- UTILS --- */
+        .icon-eye, .icon-fire { margin-right: 5px; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <svg width="40" height="40" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" fill="#222" stroke="#ff00ff" stroke-width="3"/>
+                <text x="50" y="65" text-anchor="middle" fill="#00ffff" font-size="40">👾</text>
+            </svg>
+            <div class="logo-text"><span>BRAINROT-</span><span>NEWZZ</span></div>
+        </div>
+        <div class="date" id="currentDate">9 Jan 2026</div>
+    </header>
+
+    <nav>
+        <a href="#" class="nav-item active">🏠 Politics</a>
+        <a href="#" class="nav-item">Sports</a>
+        <a href="#" class="nav-item">Business</a>
+        <a href="#" class="nav-item">India</a>
+        <a href="#" class="nav-item">World</a>
+        <a href="#" class="nav-item">Tech</a>
+    </nav>
+
+    <h2 class="section-title">Trending News</h2>
+    <section class="trending-container">
+        <article class="card-lg">
+            <div class="card-image" style="background-image: url('https://picsum.photos/seed/politics/400/300');"></div>
+            <div class="card-content">
+                <span class="tag" style="background: #a00040;">Politics</span>
+                <h3 class="card-title">BREAKING: Major Deal Struck in Global Summit</h3>
+                <div class="card-stats">
+                    <span>👁 24k</span>
+                    <span>🔥 1.4k</span>
+                </div>
+            </div>
+        </article>
+
+        <article class="card-lg">
+            <div class="card-image" style="background-image: url('https://picsum.photos/seed/sports/400/300');"></div>
+            <div class="card-content">
+                <span class="tag" style="background: #b000b0;">Sports</span>
+                <h3 class="card-title">Epic Soccer Match Ends in Dramatic Win</h3>
+                <div class="card-stats">
+                    <span>👁 15k</span>
+                    <span>🔥 18k</span>
+                </div>
+            </div>
+        </article>
+
+        <article class="card-lg">
+            <div class="card-image" style="background-image: url('https://picsum.photos/seed/tech/400/300');"></div>
+            <div class="card-content">
+                <span class="tag" style="background: #5000ff;">Tech</span>
+                <h3 class="card-title">ChatGPT Just Got an Insane New Upgrade!</h3>
+                <div class="card-stats">
+                    <span>👁 18k</span>
+                    <span>🔥 18k</span>
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <h2 class="section-title">Latest Updates</h2>
+    <section class="latest-container" id="newsGrid">
+        <article class="card-sm">
+            <div class="card-image" style="background-image: url('https://picsum.photos/seed/stock/300/200');"></div>
+            <div class="card-content">
+                <span class="tag" style="background: #008080;">Business</span>
+                <h3 class="card-title">Stock Market Surges to New Heights</h3>
+                <div class="card-stats"><span>👁 13k</span><span>🔥 12k</span></div>
+            </div>
+        </article>
+        
+        <article class="card-sm">
+            <div class="card-image" style="background-image: url('https://picsum.photos/seed/bollywood/300/200');"></div>
+            <div class="card-content">
+                <span class="tag" style="background: #00a0a0;">India</span>
+                <h3 class="card-title">Bollywood Megastar's New Blockbuster</h3>
+                <div class="card-stats"><span>👁 14k</span><span>🔥 7k</span></div>
+            </div>
+        </article>
+
+        <article class="card-sm">
+            <div class="card-image" style="background-image: url('https://picsum.photos/seed/ufo/300/200');"></div>
+            <div class="card-content">
+                <span class="tag" style="background: #0060c0;">World</span>
+                <h3 class="card-title">Bizarre UFO Sighting Over Major City</h3>
+                <div class="card-stats"><span>👁 11k</span><span>🔥 74</span></div>
+            </div>
+        </article>
+
+        <article class="card-sm">
+            <div class="card-image" style="background-image: url('https://picsum.photos/seed/data/300/200');"></div>
+            <div class="card-content">
+                <span class="tag" style="background: #5000ff;">Tech</span>
+                <h3 class="card-title">AI Data Leak Raises Privacy Alarms</h3>
+                <div class="card-stats"><span>👁 9k</span><span>🔥 1.5k</span></div>
+            </div>
+        </article>
+    </section>
+
+    <div class="loading-trigger" id="loader">LOADING MORE NEWZZ...</div>
+
+    <script>
+        // --- 1. SET DATE ---
+        const dateEl = document.getElementById('currentDate');
+        const now = new Date();
+        const options = { day: 'numeric', month: 'short', year: 'numeric' };
+        dateEl.textContent = now.toLocaleDateString('en-GB', options);
+
+        // --- 2. INFINITE SCROLL LOGIC ---
+        const grid = document.getElementById('newsGrid');
+        const loader = document.getElementById('loader');
+
+        // Mock data generator
+        const categories = ['Tech', 'Politics', 'Gaming', 'Space', 'Crypto', 'Viral'];
+        const colors = ['#5000ff', '#a00040', '#008080', '#b000b0', '#ff8c00'];
+        const titles = [
+            "Scientists Discover New Planet Made of Diamond",
+            "Crypto Market Crashes After Elon's Tweet",
+            "New VR Headset Allows You to Smell Colors",
+            "Local Cat Elected Mayor of Small Town",
+            "The Internet is Obsessed With This New Meme",
+            "Flying Cars Finally Approved for Public Use",
+            "Hacker Leaks Secret Government Files",
+            "Robot Chef wins Michelin Star"
+        ];
+
+        function createCard(index) {
+            const card = document.createElement('article');
+            card.className = 'card-sm';
+            
+            const randomCat = categories[Math.floor(Math.random() * categories.length)];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            const randomTitle = titles[Math.floor(Math.random() * titles.length)];
+            const views = Math.floor(Math.random() * 50) + 'k';
+            const fires = Math.floor(Math.random() * 20) + 'k';
+            const imgId = Math.floor(Math.random() * 1000); // Random image seed
+
+            card.innerHTML = `
+                <div class="card-image" style="background-image: url('https://picsum.photos/seed/${imgId}/300/200');"></div>
+                <div class="card-content">
+                    <span class="tag" style="background: ${randomColor};">${randomCat}</span>
+                    <h3 class="card-title">${randomTitle}</h3>
+                    <div class="card-stats">
+                        <span>👁 ${views}</span>
+                        <span>🔥 ${fires}</span>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        // Function to load more items
+        function loadMoreNews() {
+            // Simulate network delay
+            setTimeout(() => {
+                for (let i = 0; i < 4; i++) { // Add 4 cards at a time
+                    const newCard = createCard(i);
+                    grid.appendChild(newCard);
+                }
+            }, 500);
+        }
+
+        // Intersection Observer to detect end of page
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                loadMoreNews();
+            }
+        }, { threshold: 1.0 });
+
+        observer.observe(loader);
+
+    </script>
+</body>
+</html>
