@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRAINROT-NEWZZ</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script> 
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="top-bar">
+            <div class="logo-area" id="homeBtn" style="cursor: pointer;">
+                <img src="logo_1.png" alt="Brain Mascot" class="mascot-img">
+                <div class="logo-text">
+                    <span class="text-white">BRAINROT-</span><span class="text-orange">NEWZZ</span>
+                </div>
+            </div>
+            <div class="date-display" id="dateDisplay"></div>
+        </div>
+
+        <nav class="bottom-nav">
+            <div class="nav-links">
+                <a class="nav-item active" data-category="all">All</a>
+                <a class="nav-item" data-category="politics">Politics</a>
+                <a class="nav-item" data-category="sports">Sports</a>
+                <a class="nav-item" data-category="business">Business</a>
+                <a class="nav-item" data-category="india">India</a>
+                <a class="nav-item" data-category="world">World</a>
+                <a class="nav-item" data-category="tech">Tech</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <div class="section-header-wrapper">
+            <h2 class="section-header">Trending <span class="highlight-pink">News</span></h2>
+        </div>
+        
+        <div class="slider-container">
+            <button class="scroll-btn prev-btn" data-target="trending-slider"><i class="ph ph-caret-left"></i></button>
+            <button class="scroll-btn next-btn" data-target="trending-slider"><i class="ph ph-caret-right"></i></button>
+            
+            <div class="horizontal-slider" id="trending-slider">
+                <p style="padding: 20px; color: var(--text-gray);">Fetching brainrot...</p>
+            </div>
+        </div>
+
+        <div class="section-header-wrapper">
+            <h2 class="section-header">Latest <span class="highlight-pink">Updates</span></h2>
+        </div>
+        
+        <div class="slider-container">
+            <button class="scroll-btn prev-btn" data-target="updates-slider"><i class="ph ph-caret-left"></i></button>
+            <button class="scroll-btn next-btn" data-target="updates-slider"><i class="ph ph-caret-right"></i></button>
+
+            <div class="horizontal-slider" id="updates-slider">
+                <p style="padding: 20px; color: var(--text-gray);">Loading updates...</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="articleModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            
+            <div class="modal-header">
+                <span id="modalTag" class="tag">Category</span>
+                <h1 id="modalTitle">Article Title</h1>
+            </div>
+            
+            <img id="modalImage" src="" alt="News Image" class="modal-main-img">
+            
+            <div class="modal-body-wrapper">
+                <h3 style="color: var(--neon-orange); font-family: 'Poppins', sans-serif; margin-bottom: 10px;">The Tea ☕:</h3>
+                
+                <p id="modalBody" class="modal-text">Loading...</p>
+                
+                </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-brand-centered">
+            <img src="logo_1.png" alt="Brain Mascot" class="footer-mascot">
+            <h2 class="footer-logo-text">
+                <span class="text-white">BRAINROT-</span><span class="text-orange">NEWZZ</span>
+            </h2>
+            <p class="footer-desc-text">
+                The only news source that rots your brain in the best way possible. 
+                Serving you the freshest, spiciest takes from across the metaverse.
+            </p>
+        </div>
+        <div class="copyright-bar">
+            &copy; 2026 Brainrot Newzz. All rights reserved. Do not consume without coffee.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
