@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API_URL = 'http://localhost:5000/api/news'; 
+    const API_URL = 'https://brainrot-news.onrender.com/api/news';
     const trendingSlider = document.getElementById('trending-slider');
     const updatesSlider = document.getElementById('updates-slider');
     const navItems = document.querySelectorAll('.nav-item');
