@@ -1,0 +1,30 @@
+{
+  "name": "brainrot-news",
+  "version": "1.0.0",
+  "description": "**Brainrot News** is a news website that gives you the important stuff without the 2,000-word essay.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ankithajv/brainrot-news.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ankithajv/brainrot-news/issues"
+  },
+  "homepage": "https://github.com/ankithajv/brainrot-news#readme",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "axios": "^1.13.2",
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "mongoose": "^9.1.5",
+    "node-cron": "^4.2.1"
+  }
+}
