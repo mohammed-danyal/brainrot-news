@@ -67,7 +67,7 @@ async function fetchAndProcessNews() {
   console.log("🤖 News bot started");
 
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
   for (const category of CATEGORIES) {
     console.log(`\n🔍 Category: ${category.toUpperCase()}`);
